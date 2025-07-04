@@ -15,6 +15,7 @@ import type { ApplicationFormData } from '../types';
 import { isAdult, isValidFileType, isValidFileSize } from '../utils/validation';
 import api from '../api/axios';
 import { uploadToCloudinary } from '../api/cloudinary';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const initialForm: ApplicationFormData = {
   fullName: '',
@@ -248,10 +249,10 @@ const ApplicationForm: React.FC = () => {
       <Paper
         elevation={3}
         sx={{
-          maxWidth: { xs: '100%', sm: 400, md: 500 },
+          maxWidth: { xs: '100%', sm: 400, md: 420 },
           mx: 'auto',
-          p: { xs: 2, sm: 3, md: 4 },
-          mt: { xs: 0, sm: 2, md: 0 },
+          p: { xs: 1, sm: 2, md: 2 },
+          mt: { xs: 0, sm: 1, md: 0 },
           width: { xs: '100%', sm: 'auto' },
         }}
       >
@@ -259,7 +260,7 @@ const ApplicationForm: React.FC = () => {
           Learner's Licence Application
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Stack spacing={2}>
+          <Stack spacing={1.5}>
             <TextField
               label="Full Name"
               name="fullName"
@@ -376,14 +377,14 @@ const ApplicationForm: React.FC = () => {
               >
                 Save as Draft
               </Button>
-              <Button
+              <LoadingButton
                 variant="contained"
                 type="submit"
-                disabled={submitting}
+                loading={submitting}
                 fullWidth
               >
-                {submitting ? 'Submitting...' : 'Submit'}
-              </Button>
+                Submit
+              </LoadingButton>
             </Stack>
             {successMsg && <Alert severity="info">{successMsg}</Alert>}
           </Stack>
